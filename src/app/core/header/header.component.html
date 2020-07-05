@@ -1,0 +1,54 @@
+<mat-toolbar [class.mat-elevation-z5]="true">
+  <mat-toolbar-row fxLayoutAlign="space-between center">
+    <div fxLayout="row">
+      <button mat-icon-button [routerLink]="['/']">
+        <fa-icon [icon]="home" size="lg"></fa-icon>
+      </button>
+      <!--buttons disappear on Xs devices-->
+      <div *ngIf="!deviceXs">
+        <!-- <button mat-button [routerLink]="['']">
+          module 1
+        </button>
+        <button mat-button [routerLink]="['']">
+          module 2
+        </button> -->
+      </div>
+      <!---->
+    </div>
+    <div fxLayout="row">
+      <button mat-icon-button [matMenuTriggerFor]="users" aria-label="Example icon-button with a menu">
+        <fa-icon [icon]="userIcon" size="lg"></fa-icon>
+      </button>
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <fa-icon [icon]="dots" size="lg"></fa-icon>
+      </button>
+    </div>
+  </mat-toolbar-row>
+  <!--mat-toolbar-row displayed on Xs devices-->
+  <mat-toolbar-row *ngIf="deviceXs" fxLayoutAlign="space-between center">
+    <!-- <button mat-button [routerLink]="['']">
+      module 1
+    </button>
+    <button mat-button [routerLink]="['']">
+      module 2
+    </button> -->
+  </mat-toolbar-row>
+  <!---->
+</mat-toolbar>
+<!-- Menu Items -->
+<mat-menu #menu="matMenu" fxLayoutAlign="end">
+  <button mat-menu-item [routerLink]="['']">
+    Acerca de
+  </button>
+  <button mat-menu-item [routerLink]="['']">
+    En construcción
+  </button>
+</mat-menu>
+<mat-menu #users="matMenu" fxLayoutAlign="end">
+  <button mat-menu-item [routerLink]="['login']">
+    Entrar
+  </button>
+  <button mat-menu-item [routerLink]="['register']">
+    Registro
+  </button>
+</mat-menu>
