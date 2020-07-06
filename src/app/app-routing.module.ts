@@ -1,3 +1,4 @@
+import { PrivacyPolicyComponent } from './core/components/privacy-policy/privacy-policy.component';
 import { NgModule, Input } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './core/components/home/home.component';
@@ -8,6 +9,8 @@ import { MainComponent } from './core/components/main/main.component';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { AdminGuard } from './admin/guard/admin.guard';
 import { AdminComponent } from './admin/containers/admin/admin.component';
+import { AboutComponent } from './core/components/about/about.component';
+import { UnderConstructionComponent } from './core/components/under-construction/under-construction.component';
 
 
 const routes: Routes = [{
@@ -22,7 +25,11 @@ const routes: Routes = [{
         ), canActivate: [AuthGuard]
     }
   ]
-}, { path: 'register', component: RegisterComponent },
+},
+{ path: 'privacy-policy', component: PrivacyPolicyComponent },
+{ path: 'about', component: AboutComponent },
+{ path: 'under-construction', component: UnderConstructionComponent },
+{ path: 'register', component: RegisterComponent },
 { path: 'login', component: LoginComponent },
 { path: '**', component: NotFoundComponent }];
 

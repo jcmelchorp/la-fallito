@@ -85,7 +85,7 @@ export class AuthEffects {
     ofType(auth.AuthActionTypes.UPDATE_PROFILE),
     map((action: auth.UpdateProfile) => action.payload),
     switchMap((payload: any) =>
-      this.authService.updateProfile(payload.displayName, payload.photoUrl).pipe(
+      this.authService.updateProfile(payload.displayName, payload.photoUrl)).pipe(
         map(() => {
           const currentUser: any = this.authService.getCurrentUser();
           const updatedUser: any = {
@@ -99,7 +99,6 @@ export class AuthEffects {
         }),
         catchError((error) => of(new auth.AuthError(error)))
       )
-    )
   ); */
 
 
@@ -120,17 +119,17 @@ export class AuthEffects {
           };
           return new auth.LoginSuccess({ user });
         }),
-        /*         switchMap( (user: any) => {
-                  if (user.isNewUser) {
-                    return [
-                      new auth.LoginSuccess({ user }),
-                      new auth.SaveUser( { uid: user.uid, name: user.displayName }),
-                      new auth.CheckUserRole( {uid: user.uid })
-                    ];
-                  } else {
-                    return [ new auth.LoginSuccess( {user }), new auth.CheckUserRole({ uid: user.uid })];
-                  }
-                }), */
+        switchMap((user: any) => {
+          if (user.isNewUser) {
+            return [
+              new auth.LoginSuccess({ user }),
+              new auth.SaveUser({ user }),
+              new auth.CheckUserRole({ uid: user.uid })
+            ];
+          } else {
+            return [new auth.LoginSuccess({ user }), new auth.CheckUserRole({ uid: user.uid })];
+          }
+        }),
         tap(() => this.router.navigateByUrl('')),
         catchError(error => of(new auth.AuthError({ error })))
       )

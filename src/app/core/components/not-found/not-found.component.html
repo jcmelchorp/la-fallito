@@ -1,13 +1,17 @@
-<div class="container">
-  <div class="row ">
-    <div class="col-md-8">
-      <img src="https://mdbootstrap.com/img/Marketing/other/logo/logo-mdb-angular-small.png" alt="Error 404"
-        class="img-fluid">
-      <h2 class="h2-responsive mt-3 mb-2">404. That's an error.</h2>
-      <h4>The requested URL was not found on this server.</h4>
-    </div>
-    <div class="col-md-4">
-      <img src="https://mdbootstrap.com/img/Others/grafika404-bf.png" alt="Error 404" class="img-fluid">
-    </div>
+<div class="jumbotron">
+  <div class="pt-3 text-center">
+    <mat-icon class="mainlogo" svgIcon="covid" aria-hidden="false" aria-label="covid icon"></mat-icon>
+    <p class="display-4 app-name text-danger">
+      Error 404
+    </p>
+    <p class="mat-h1">
+      Pagina no encontrada
+    </p>
+    <p>
+      Si estas viendo esto es porque llegaste a un callejón sin salida.
+    </p>
+    <button mat-raised-button color="primary" [routerLink]="['/']">
+      Inico&nbsp;<fa-icon [icon]="home"></fa-icon>
+    </button>
   </div>
 </div>

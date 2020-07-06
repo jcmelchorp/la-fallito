@@ -1,58 +1,55 @@
 <div class="container-fluid full-page-container">
   <div class="row h-100 justify-content-center align-items-center">
-    <div class="col-lg-4 col-sm-8 animated fadeIn">
-      <!-- Material form login -->
-      <mat-card [class.mat-elevation-z5]="true">
-        <mat-card-header class="white text-center py-4">
-          <mat-card-title>
-            <p>Inicio de sesión</p>
-          </mat-card-title>
+    <div class="col-lg-4 col-sm-8">
+      <mat-card [class.mat-elevation-z6]="true">
+        <mat-card-header class="py-4">
+          <mat-card-title>Inicio de sesión</mat-card-title>
         </mat-card-header>
-        <mat-card-content class="px-lg-5 pt-0">
+        <mat-card-content>
           <div *ngIf="error$ | async as error" class="alert alert-danger" role="alert">
             {{ error }}
           </div>
           <!-- Form -->
           <form [formGroup]="loginForm" novalidate (ngSubmit)="onLogin()">
-
             <!-- Email -->
-            <p>
-              <mat-form-field appearance="outline">
-                <mat-label>Correo electrónico</mat-label>
-                <input matInput type="email" #email formControlName="email">
-                <mat-error *ngIf="email.invalid">{{error$}}</mat-error>
-              </mat-form-field>
-            </p>
+            <mat-form-field class="d-block" appearance="outline">
+              <mat-label>Correo electrónico</mat-label>
+              <input matInput type="email" #email formControlName="email">
+              <mat-icon matSuffix>mail</mat-icon>
+              <mat-error *ngIf="email.invalid">{{error$}}</mat-error>
+            </mat-form-field>
             <!-- Password -->
-            <p>
-              <mat-form-field appearance="outline">
-                <mat-label>Contraseña</mat-label>
-                <input matInput type="password" #password formControlName="password">
-                <mat-error *ngIf="password.invalid">{{error$}}</mat-error>
-
-              </mat-form-field>
-            </p>
-
+            <mat-form-field class="d-block" appearance="outline">
+              <mat-label>Contraseña</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" #password formControlName="password">
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="password.invalid">{{error$}}</mat-error>
+            </mat-form-field>
 
             <!-- Sign in button -->
-            <button mat-raised-button color="primary" block="true" class="my-4" type="submit"
-              (click)="onLogin()">Entrar</button>
+            <button mat-raised-button class="btn btn-block btn-info" type="submit" (click)="onLogin()">Entrar</button>
+            <!-- Social login -->
+            <div class="btn-group btn-block py-3">
+              <button mat-button type="button" class="btn btn-primary" (click)="onSocialLogin('facebook')">
+                <fa-icon [icon]="facebook" size="lg"></fa-icon>
+              </button>
+              <button mat-button type="button" class="btn btn-info" (click)="onSocialLogin('twitter')">
+                <fa-icon [icon]="twitter" size="lg"></fa-icon>
+              </button>
+              <button mat-button type="button" class="btn btn-danger" (click)="onSocialLogin('google')">
+                <fa-icon [icon]="google" size="lg"></fa-icon>
+              </button>
+            </div>
           </form>
           <!-- Register -->
-          <p>¿No está inscrito? Regístrate
-            <a [routerLink]="['/register']">aquí</a>
+          <p class="pt-2">¿No está inscrito?
+            <a mat-button color="primary" [routerLink]="['/register']">Regístrate aquí</a>
           </p>
-          <!-- Social login -->
-          <p>o usa tus redes sociales:</p>
-          <a mat-icon-button type="button" class="mr-4" (click)="onSocialLogin('facebook')">
-            <fa-icon [icon]="facebook" size="lg"></fa-icon>
-          </a>
-          <a mat-icon-button type="button" class="mr-4" (click)="onSocialLogin('twitter')">
-            <fa-icon [icon]="twitter" size="lg"></fa-icon>
-          </a>
-          <a mat-icon-button type="button" (click)="onSocialLogin('google')">
-            <fa-icon [icon]="google" size="lg"></fa-icon>
-          </a>
+
+
         </mat-card-content>
       </mat-card>
     </div>

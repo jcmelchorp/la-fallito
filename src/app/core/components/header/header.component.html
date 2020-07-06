@@ -22,7 +22,7 @@
       </button>
       <button *ngIf="isLoggedIn" mat-icon-button [matMenuTriggerFor]="useractions"
         aria-label="Example icon-button with a menu">
-        <img class="img-fluid img-thumbnail" src="{{user.photoUrl}}">
+        <img class="img-fluid img-thumbnail rounded-circle" src="{{user.photoUrl}}">
       </button>
       <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
         <fa-icon [icon]="dots" size="lg"></fa-icon>
@@ -42,10 +42,10 @@
 </mat-toolbar>
 <!-- Menu Items -->
 <mat-menu #menu="matMenu" fxLayoutAlign="end">
-  <button mat-menu-item [routerLink]="['']">
+  <button mat-menu-item [routerLink]="['/under-construction']">
     Ayuda
   </button>
-  <button mat-menu-item [routerLink]="['']">
+  <button mat-menu-item [routerLink]="['/about']">
     Acerca de...
   </button>
 </mat-menu>

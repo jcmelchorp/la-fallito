@@ -14,7 +14,7 @@ import { map } from 'rxjs/operators';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
-
+  hide = true;
   error$: Observable<string | null>;
 
   constructor(private store: Store<AppState>) { }

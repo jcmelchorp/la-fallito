@@ -18,6 +18,7 @@ import {
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  hide = true;
   loginForm: FormGroup;
   facebook = faFacebook;
   twitter = faTwitter;

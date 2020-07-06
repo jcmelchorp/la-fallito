@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from './../material.module';
@@ -13,7 +14,9 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { MainComponent } from './components/main/main.component';
 import { WellcomeComponent } from './components/wellcome/wellcome.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-
+import { UnderConstructionComponent } from './components/under-construction/under-construction.component';
+import { AboutComponent } from './components/about/about.component';
+import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 
 
 @NgModule({
@@ -24,7 +27,10 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     NotFoundComponent,
     MainComponent,
     WellcomeComponent,
-    DashboardComponent
+    DashboardComponent,
+    AboutComponent,
+    UnderConstructionComponent,
+    PrivacyPolicyComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +47,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     NotFoundComponent,
     MainComponent,
     WellcomeComponent,
-    DashboardComponent
+    DashboardComponent,
+    AboutComponent,
+    UnderConstructionComponent
   ]
 })
 export class CoreModule { }

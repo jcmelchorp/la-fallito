@@ -1,48 +1,48 @@
 <div class="container-fluid full-page-container">
   <div class="row h-100 justify-content-center align-items-center">
-    <div class="col-lg-4 col-sm-8 animated fadeIn">
-      <!-- Material form login -->
-      <mat-card [class.mat-elevation-z5]="true">
-        <mat-card-header class="white text-center py-4">
-          <mat-card-title>
-            <p>Registro</p>
-          </mat-card-title>
+    <div class="col-lg-4 col-sm-8">
+      <mat-card [class.mat-elevation-z6]="true">
+        <mat-card-header class="py-4">
+          <mat-card-title>Registro</mat-card-title>
         </mat-card-header>
-        <!--Card content-->
-        <mat-card-content class="px-lg-5 pt-0">
+        <mat-card-content>
           <div *ngIf="error$ | async as error" class="alert alert-danger" role="alert">
             {{ error }}
           </div>
           <!-- Form -->
           <form [formGroup]="registerForm" novalidate (ngSubmit)="onRegister()">
-
             <!-- Username -->
-            <mat-form-field>
+            <mat-form-field class="d-block" appearance="outline">
               <mat-label>Nombre de usuario</mat-label>
               <input matInput type="text" #username formControlName="username">
+              <mat-icon matSuffix>username</mat-icon>
             </mat-form-field>
-
             <!-- Email -->
-            <mat-form-field>
+            <mat-form-field class="d-block" appearance="outline">
               <mat-label>Correo electrónico</mat-label>
               <input matInput type="email" #email formControlName="email">
+              <mat-icon matSuffix>mail</mat-icon>
+              <mat-error *ngIf="email.invalid">{{error$}}</mat-error>
             </mat-form-field>
-
             <!-- Password -->
-            <mat-form-field>
+            <mat-form-field class="d-block" appearance="outline">
               <mat-label>Contraseña</mat-label>
-              <input matInput type="password" #password formControlName="password">
+              <input matInput [type]="hide ? 'password' : 'text'" #password formControlName="password">
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="password.invalid">{{error$}}</mat-error>
             </mat-form-field>
-
             <!-- Sign in button -->
-            <button mat-raised-button color="primary" class="my-4" type="submit">Registrar</button>
-
-            <!-- Register -->
-            <p>¿Ya esta inscrito?
-              <a [routerLink]="['/login']">Inicia sesión</a>
-            </p>
-
+            <button mat-raised-button class="btn btn-block btn-success" type="submit">Registrar</button>
           </form>
+          <!-- Register -->
+          <p class="pt-5">¿Ya esta inscrito?
+            <a mat-button color="primary" [routerLink]="['/login']">Inicia sesión</a>
+          </p>
+
+
           <!-- Form -->
 
         </mat-card-content>
