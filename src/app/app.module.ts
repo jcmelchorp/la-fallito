@@ -1,3 +1,4 @@
+import { ProfileModule } from './profile/profile.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './material.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -32,6 +33,7 @@ import { environment } from 'src/environments/environment';
     CoreModule,
     AuthModule,
     AdminModule,
+    ProfileModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,

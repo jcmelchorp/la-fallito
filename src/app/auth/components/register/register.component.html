@@ -2,10 +2,10 @@
   <div class="row h-100 justify-content-center align-items-center">
     <div class="col-lg-4 col-sm-8 animated fadeIn">
       <!-- Material form login -->
-      <mat-card class="z-depth-2">
+      <mat-card [class.mat-elevation-z5]="true">
         <mat-card-header class="white text-center py-4">
           <mat-card-title>
-            <strong>Register</strong>
+            <p>Registro</p>
           </mat-card-title>
         </mat-card-header>
         <!--Card content-->
@@ -18,28 +18,28 @@
 
             <!-- Username -->
             <mat-form-field>
-              <mat-label>Username</mat-label>
+              <mat-label>Nombre de usuario</mat-label>
               <input matInput type="text" #username formControlName="username">
             </mat-form-field>
 
             <!-- Email -->
-            <mat-form-field appearance="fill">
-              <mat-label>E-mail</mat-label>
+            <mat-form-field>
+              <mat-label>Correo electrónico</mat-label>
               <input matInput type="email" #email formControlName="email">
             </mat-form-field>
 
             <!-- Password -->
             <mat-form-field>
-              <mat-label>Password</mat-label>
+              <mat-label>Contraseña</mat-label>
               <input matInput type="password" #password formControlName="password">
             </mat-form-field>
 
             <!-- Sign in button -->
-            <button mat-button color="primary" class="my-4" type="submit" (click)="onRegister()">Register</button>
+            <button mat-raised-button color="primary" class="my-4" type="submit">Registrar</button>
 
             <!-- Register -->
-            <p>Already have an account?
-              <a [routerLink]="['login']">Log In</a>
+            <p>¿Ya esta inscrito?
+              <a [routerLink]="['/login']">Inicia sesión</a>
             </p>
 
           </form>

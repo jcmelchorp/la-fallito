@@ -1,3 +1,4 @@
+import { UpdateProfile } from './../store/auth.actions';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { from } from 'rxjs';
@@ -13,18 +14,27 @@ export class AuthService {
   constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase) { }
 
   register(email: string, password: string) {
-    return from(this.afAuth.auth.createUserWithEmailAndPassword(email, password));
+    return from(this.afAuth.createUserWithEmailAndPassword(email, password));
   }
 
-  updateProfile(displayName: string, photoUrl: string) {
-    const userProfile = this.afAuth.auth.currentUser;
+  async updateProfile(displayName: string, photoUrl: string) {
+    const userProfile = firebase.auth().currentUser;
     if (userProfile) {
-      return <any>from(userProfile.updateProfile( { displayName: displayName, photoURL: photoUrl }));
+      return from(userProfile.updateProfile(
+        {
+          displayName: displayName,
+          photoURL: photoUrl
+        }
+      ).then(
+        () => {
+          console.log('update successfull');
+        }
+      ).catch());
     }
   }
 
   login(email: string, password: string) {
-    return from(this.afAuth.auth.signInWithEmailAndPassword(email, password));
+    return from(this.afAuth.signInWithEmailAndPassword(email, password));
   }
 
   socialLogin(authProvider: string) {
@@ -40,12 +50,12 @@ export class AuthService {
     if (authProvider === 'twitter') {
       provider = new firebase.auth.TwitterAuthProvider();
     }
-    return from(this.afAuth.auth.signInWithPopup(provider));
+    return from(this.afAuth.signInWithPopup(provider));
   }
 
   logout(uid: string) {
     this.updateOnlineStatus(uid, false);
-    return from(this.afAuth.auth.signOut());
+    return from(this.afAuth.signOut());
   }
 
   saveUser(user: User) {
@@ -55,7 +65,7 @@ export class AuthService {
 
   updateOnlineStatus(uid: string, status: boolean) {
     if (status) {
-      this.db.database.ref().child('users/' + uid).onDisconnect().update( { isOnline: false });
+      this.db.database.ref().child('users/' + uid).onDisconnect().update({ isOnline: false });
     }
     return from(this.db.object('users/' + uid).update({ isOnline: status }));
   }
@@ -69,6 +79,6 @@ export class AuthService {
   }
 
   getCurrentUser() {
-    return this.afAuth.auth.currentUser;
+    return this.afAuth.currentUser;
   }
 }

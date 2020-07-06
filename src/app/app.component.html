@@ -2,7 +2,6 @@
   <app-header [deviceXs]="deviceXs" [user]="user$ | async" [isLoggedIn]="isLoggedIn$ | async"
     [isLoading]="isLoading$ | async" [isAdmin]="isAdmin$ | async" (logout)="onLogout($event)"></app-header>
 </header>
-
 <main>
   <router-outlet></router-outlet>
 </main>

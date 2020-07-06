@@ -2,10 +2,10 @@
   <div class="row h-100 justify-content-center align-items-center">
     <div class="col-lg-4 col-sm-8 animated fadeIn">
       <!-- Material form login -->
-      <mat-card>
+      <mat-card [class.mat-elevation-z5]="true">
         <mat-card-header class="white text-center py-4">
           <mat-card-title>
-            <strong>Log in</strong>
+            <p>Inicio de sesión</p>
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="px-lg-5 pt-0">
@@ -16,45 +16,45 @@
           <form [formGroup]="loginForm" novalidate (ngSubmit)="onLogin()">
 
             <!-- Email -->
-            <mat-form-field>
-              <input matInput type="email" #email formControlName="email">
-              <label for="email">E-mail</label>
-              <!-- <mdb-error *ngIf="email && email.invalid && (email.dirty || email.touched)">Email is required</mdb-error> -->
-            </mat-form-field>
-
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label>Correo electrónico</mat-label>
+                <input matInput type="email" #email formControlName="email">
+                <mat-error *ngIf="email.invalid">{{error$}}</mat-error>
+              </mat-form-field>
+            </p>
             <!-- Password -->
-            <mat-form-field>
-              <input matInput type="password" #password formControlName="password">
-              <label for="password">Password</label>
-              <!--   <mdb-error *ngIf="password && password.invalid && (password.dirty || password.touched)">Password is
-                required</mdb-error> -->
-            </mat-form-field>
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label>Contraseña</mat-label>
+                <input matInput type="password" #password formControlName="password">
+                <mat-error *ngIf="password.invalid">{{error$}}</mat-error>
 
-            <!-- Sign in button -->
-            <button mat-raised-button color="primary" block="true" class="my-4" type="submit" (click)="onLogin()">Log
-              in</button>
-
-            <!-- Register -->
-            <p>Not a member?
-              <a routerLink="/register">Register</a>
+              </mat-form-field>
             </p>
 
-            <!-- Social login -->
-            <p>or log in with:</p>
-            <a type="button" class="mr-4" (click)="onSocialLogin('facebook')">
-              <fa-icon [icon]="facebook" size="lg"></fa-icon>
-            </a>
-            <a type="button" class="mr-4" (click)="onSocialLogin('twitter')">
-              <fa-icon [icon]="twitter" size="lg"></fa-icon>
-            </a>
-            <a type="button" (click)="onSocialLogin('google')">
-              <fa-icon [icon]="google" size="lg"></fa-icon>
-            </a>
+
+            <!-- Sign in button -->
+            <button mat-raised-button color="primary" block="true" class="my-4" type="submit"
+              (click)="onLogin()">Entrar</button>
           </form>
-          <!-- Form -->
+          <!-- Register -->
+          <p>¿No está inscrito? Regístrate
+            <a [routerLink]="['/register']">aquí</a>
+          </p>
+          <!-- Social login -->
+          <p>o usa tus redes sociales:</p>
+          <a mat-icon-button type="button" class="mr-4" (click)="onSocialLogin('facebook')">
+            <fa-icon [icon]="facebook" size="lg"></fa-icon>
+          </a>
+          <a mat-icon-button type="button" class="mr-4" (click)="onSocialLogin('twitter')">
+            <fa-icon [icon]="twitter" size="lg"></fa-icon>
+          </a>
+          <a mat-icon-button type="button" (click)="onSocialLogin('google')">
+            <fa-icon [icon]="google" size="lg"></fa-icon>
+          </a>
         </mat-card-content>
       </mat-card>
-      <!-- Material form login -->
     </div>
   </div>
 </div>

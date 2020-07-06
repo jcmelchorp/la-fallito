@@ -3,14 +3,16 @@ import { RouterModule } from '@angular/router';
 import { MaterialModule } from './../material.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from './header/header.component';
-import { HomeComponent } from './home/home.component';
+
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FooterComponent } from './footer/footer.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { MainComponent } from './main/main.component';
-import { WellcomeComponent } from './wellcome/wellcome.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { HeaderComponent } from './components/header/header.component';
+import { HomeComponent } from './components/home/home.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { MainComponent } from './components/main/main.component';
+import { WellcomeComponent } from './components/wellcome/wellcome.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
 
@@ -29,7 +31,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     RouterModule,
     MaterialModule,
     FontAwesomeModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    CarouselModule,
   ],
   exports: [
     HeaderComponent,

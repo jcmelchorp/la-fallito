@@ -16,7 +16,7 @@ export class AuthEffects {
     private authService: AuthService,
     private gravatarService: GravatarService,
     private router: Router,
-  ) {}
+  ) { }
 
   @Effect()
   registerAction$ = this.actions$.pipe(
@@ -38,12 +38,12 @@ export class AuthEffects {
           };
           return user;
         }),
-        switchMap( (user: User) => {
+        switchMap((user: User) => {
           return [
             new auth.RegisterCompleted(),
             new auth.LoginSuccess({ user }),
             new auth.UpdateProfile({ displayName: payload.username, photoUrl: user.photoUrl }),
-            new auth.SaveUser( { user })
+            new auth.SaveUser({ user })
           ];
         }),
         tap(() => { this.router.navigateByUrl(''); }),
@@ -55,52 +55,52 @@ export class AuthEffects {
   @Effect({ dispatch: false })
   saveUser$ = this.actions$.pipe(
     ofType(auth.AuthActionTypes.SAVE_USER),
-    map( (action: auth.SaveUser) => action.payload),
-    switchMap( (payload: any) => this.authService.saveUser(payload.user))
+    map((action: auth.SaveUser) => action.payload),
+    switchMap((payload: any) => this.authService.saveUser(payload.user))
   );
 
   @Effect({ dispatch: false })
   updateOnlineStatus$ = this.actions$.pipe(
     ofType(auth.AuthActionTypes.UPDATE_ONLINE_STATUS),
-    map( (action: auth.UpdateOnlineStatus) => action.payload),
-    switchMap( (payload: any) => this.authService.updateOnlineStatus(payload.uid, payload.status))
+    map((action: auth.UpdateOnlineStatus) => action.payload),
+    switchMap((payload: any) => this.authService.updateOnlineStatus(payload.uid, payload.status))
   );
 
   @Effect()
   checkUserRole$ = this.actions$.pipe(
     ofType(auth.AuthActionTypes.CHECK_USER_ROLE),
-    map( (action: auth.CheckUserRole) => action.payload),
-    switchMap( (payload: any) => this.authService.checkUserRole(payload.uid)
+    map((action: auth.CheckUserRole) => action.payload),
+    switchMap((payload: any) => this.authService.checkUserRole(payload.uid)
       .pipe(
-        map( (isAdmin: boolean) => {
+        map((isAdmin: boolean) => {
           return new auth.UpdateUserRole({ isAdmin });
         }),
-        catchError( (error: any) => of(new auth.AuthError({ error })))
+        catchError((error: any) => of(new auth.AuthError({ error })))
       )
     )
   );
 
-  @Effect()
+  /* @Effect()
   updateProfile$ = this.actions$.pipe(
     ofType(auth.AuthActionTypes.UPDATE_PROFILE),
     map((action: auth.UpdateProfile) => action.payload),
     switchMap((payload: any) =>
       this.authService.updateProfile(payload.displayName, payload.photoUrl).pipe(
-        map( () => {
+        map(() => {
           const currentUser: any = this.authService.getCurrentUser();
-            const updatedUser: any = {
-              uid: currentUser.uid || null,
-              displayName: currentUser.displayName || null,
-              email: currentUser.email || null,
-              providerId: currentUser.providerData[0].providerId || null,
-              photoUrl: currentUser.photoURL || null
+          const updatedUser: any = {
+            uid: currentUser.uid || null,
+            displayName: currentUser.displayName || null,
+            email: currentUser.email || null,
+            providerId: currentUser.providerData[0].providerId || null,
+            photoUrl: currentUser.photoURL || null
           };
-          return new auth.UpdateProfileSuccess( { user: updatedUser });
+          return new auth.UpdateProfileSuccess({ user: updatedUser });
         }),
-        catchError( (error) => of(new auth.AuthError(error)))
+        catchError((error) => of(new auth.AuthError(error)))
       )
     )
-  );
+  ); */
 
 
   @Effect()
@@ -118,19 +118,19 @@ export class AuthEffects {
             photoUrl: res.user.photoURL,
             isNewUser: res.additionalUserInfo.isNewUser
           };
-          return new auth.LoginSuccess( {user });
+          return new auth.LoginSuccess({ user });
         }),
-/*         switchMap( (user: any) => {
-          if (user.isNewUser) {
-            return [
-              new auth.LoginSuccess({ user }),
-              new auth.SaveUser( { uid: user.uid, name: user.displayName }),
-              new auth.CheckUserRole( {uid: user.uid })
-            ];
-          } else {
-            return [ new auth.LoginSuccess( {user }), new auth.CheckUserRole({ uid: user.uid })];
-          }
-        }), */
+        /*         switchMap( (user: any) => {
+                  if (user.isNewUser) {
+                    return [
+                      new auth.LoginSuccess({ user }),
+                      new auth.SaveUser( { uid: user.uid, name: user.displayName }),
+                      new auth.CheckUserRole( {uid: user.uid })
+                    ];
+                  } else {
+                    return [ new auth.LoginSuccess( {user }), new auth.CheckUserRole({ uid: user.uid })];
+                  }
+                }), */
         tap(() => this.router.navigateByUrl('')),
         catchError(error => of(new auth.AuthError({ error })))
       )
@@ -140,12 +140,12 @@ export class AuthEffects {
   @Effect()
   loginSuccess$ = this.actions$.pipe(
     ofType(auth.AuthActionTypes.LOGIN_SUCCESS),
-    map( (action: auth.SaveUser) => action.payload),
-    switchMap( (payload: any) => {
-        return [
-          new auth.UpdateOnlineStatus({ uid: payload.user.uid, status: true }),
-          new auth.CheckUserRole( {uid: payload.user.uid })
-        ];
+    map((action: auth.SaveUser) => action.payload),
+    switchMap((payload: any) => {
+      return [
+        new auth.UpdateOnlineStatus({ uid: payload.user.uid, status: true }),
+        new auth.CheckUserRole({ uid: payload.user.uid })
+      ];
     })
   );
 
@@ -155,7 +155,7 @@ export class AuthEffects {
     map((action: auth.SocialLogin) => action.payload),
     switchMap(payload => this.authService.socialLogin(payload.authProvider)
       .pipe(
-        map( (res: any) => {
+        map((res: any) => {
           const user = {
             uid: res.user.uid,
             displayName: res.user.displayName,
@@ -166,7 +166,7 @@ export class AuthEffects {
           };
           return user;
         }),
-        switchMap( (user: User) => {
+        switchMap((user: User) => {
           if (user.isNewUser) {
             return [
               new auth.LoginSuccess({ user }),
@@ -188,7 +188,7 @@ export class AuthEffects {
   @Effect()
   logoutAction$ = this.actions$.pipe(
     ofType(auth.AuthActionTypes.LOGOUT_REQUESTED),
-    map( (action: auth.LogoutRequested) => action.payload),
+    map((action: auth.LogoutRequested) => action.payload),
     switchMap((payload: any) => this.authService.logout(payload.user.uid)
       .pipe(
         map(() => (new auth.LogoutCompleted())),
