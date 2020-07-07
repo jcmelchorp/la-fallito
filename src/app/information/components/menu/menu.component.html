@@ -1,0 +1,19 @@
+<div class="px-5 pt-2">
+  <div class="breadcrumb" fxLayout="row" fxLayoutAlign="center">
+    <div class="text-center">
+      <p class="display-4 d-none d-sm-block">Mi desempeño</p>
+      <p class="d-block d-sm-none" [ngStyle]="{ fontSize: '32px' }">
+        Información general
+      </p>
+    </div>
+  </div>
+</div>
+<div class="px-5">
+  <mat-card>
+    <div style="display: block">
+      <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+        [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
+      </canvas>
+    </div>
+  </mat-card>
+</div>

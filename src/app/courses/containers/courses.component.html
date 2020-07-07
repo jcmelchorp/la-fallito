@@ -1,0 +1,21 @@
+<mat-toolbar>
+  <button mat-icon-button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="sidenav.toggle()"
+    [ngClass]="{ hidden: !deviceSm }">
+    <fa-icon aria-label="Side nav toggle icon" [icon]="menu" size="lg"></fa-icon>
+  </button>
+  <span>Mis materias</span>
+</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav [opened]="!deviceSm" role="navigation" [mode]="!deviceSm ? 'side' : 'over'">
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="['all']">Clases</a>
+      <a mat-list-item [routerLink]="['under-construction']">Tareas</a>
+      <a mat-list-item [routerLink]="['under-construction']">Evaluaciones</a>
+      <a mat-list-item [routerLink]="['under-construction']">Material de Apoyo</a>
+      <a mat-list-item [routerLink]="['under-construction']">Plan de trabajo</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

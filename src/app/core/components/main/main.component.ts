@@ -8,39 +8,36 @@ import { CardItemContent } from '../../models/cardItemContents';
 export class MainComponent implements OnInit {
   cardItems: CardItemContent[] = [
     {
-      title: 'Anonunce 1',
+      title: 'Matemáticas - Tarea 2',
+      subtitle: '15 de julio de 2020 a las 18:00hrs',
       description:
-        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi blanditiis. Officiis nihil rem aut molestias illum eos!',
-      route_link: '/information/covid-risk',
+        'Resolver ejercicios propuestos',
+      route_link: '/information/homework',
       imageUrl: 'assets/carousel/main-banner-01.jpg',
     },
     {
-      title: 'Anonunce 2',
-      description: 'Similique porro labore commodi impedit deserunt? Officiis nihil rem aut molestias illum eos!',
+      title: 'Matemáticas - Examen parcial 2',
+      subtitle: '22 de julio de 2020',
+      description: 'Ya esta la fecha para el segundo examen parcial. Traigan su santo preferido',
       route_link: '/information/return-to-normal',
       imageUrl: 'assets/carousel/main-banner-02.jpg',
     },
     {
-      title: 'Anonunce 3',
+      title: 'Español - Tarea 5',
+      subtitle: '18 de julio de 2020 a las 14:00hrs',
       description:
-        'Distinctio similique pariatur, at sint nemo quidem commodi vel rerum aliquid quibusdam?',
+        'Ejercicios para el examen',
       route_link: '/information/covid-risk',
       imageUrl: 'assets/carousel/main-banner-03.jpg',
     },
     {
-      title: 'Anonunce 4',
+      title: 'Español - Sesión en linea',
+      subtitle: '17 de julio de 2020 a las 15:00hrs',
       description:
-        'Animi blanditiis, assumenda dolorem possimus id qui ut eaque. Similique porro labore commodi impedit deserunt?',
+        'Se resolverán dudas via Zoom. ID:426436245125346',
       route_link: '/information/covid-risk',
       imageUrl: 'assets/carousel/main-banner-04.jpg',
-    },
-    {
-      title: 'Anonunce 5',
-      description:
-        'Animi blanditiis, assumenda dolorem possimus id qui ut eaque. Similique porro labore commodi impedit deserunt?',
-      route_link: '/information/covid-risk',
-      imageUrl: 'assets/carousel/main-banner-05.jpg',
-    },
+    }
   ];
   constructor() { }
 

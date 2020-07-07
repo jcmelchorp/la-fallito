@@ -1,5 +1,5 @@
 import { PrivacyPolicyComponent } from './core/components/privacy-policy/privacy-policy.component';
-import { NgModule, Input } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './core/components/home/home.component';
 import { RegisterComponent } from './auth/components/register/register.component';
@@ -23,7 +23,21 @@ const routes: Routes = [{
         import('./profile/profile.module').then(
           (m) => m.ProfileModule
         ), canActivate: [AuthGuard]
-    }
+    },
+    {
+      path: 'courses',
+      loadChildren: () =>
+        import('./courses/courses.module').then(
+          (m) => m.CoursesModule
+        ), canActivate: [AuthGuard]
+    },
+    {
+      path: 'information',
+      loadChildren: () =>
+        import('./information/information.module').then(
+          (m) => m.InformationModule
+        ), canActivate: [AuthGuard]
+    },
   ]
 },
 { path: 'privacy-policy', component: PrivacyPolicyComponent },

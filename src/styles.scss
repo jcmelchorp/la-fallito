@@ -1,26 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 
-/*html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }*/
 html,
 body {
   height: 100%;
-  position: relative;
+}
+
+body {
   margin: 0;
-  box-sizing: border-box;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 .full-page-container {
   height: calc(100vh - 114px);
 }
 
-app-root {
-  min-height: 100%;
-  //overflow: hidden;
-  display: block;
-  position: relative;
-  background-color: #eee;
-}
 
 .section-header {
   padding-top: 70px;
@@ -28,11 +21,18 @@ app-root {
 }
 
 .footer-absolute {
-  position: absolute;
+  position: relative;
   bottom: 0;
   width: 100%;
 }
 
 app-welcome {
   background-color: white;
+}
+
+/*This is important for the toolbar shadow*/
+app-header {
+  position: relative;
+  top: 0;
+  width: 100%;
 }

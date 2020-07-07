@@ -2,11 +2,12 @@
   <div class="breadcrumb" fxLayout="row" fxLayoutAlign="center">
     <div class="text-center">
       <p class="display-4">Administración</p>
-      <p class="mat-h1"><small class="text-muted">Change settings for every user in your application</small></p>
+      <p class="mat-h1"><small class="text-muted">Administra los usuarios de la aplicación</small></p>
+      <button mat-raised-button color="accent">Registrar alumno</button>
+      <button mat-raised-button color="primary">Registrar profesor</button>
     </div>
   </div>
 </div>
-
 
 <div *ngIf="usersListLoading$ | async" class="d-flex justify-content-center align-items-center"
   style="margin-top: 300px">

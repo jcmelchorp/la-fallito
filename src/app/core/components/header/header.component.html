@@ -1,4 +1,4 @@
-<mat-toolbar [class.mat-elevation-z5]="true">
+<mat-toolbar [class.mat-elevation-z10]="true">
   <mat-toolbar-row fxLayoutAlign="space-between center">
     <div fxLayout="row">
       <button mat-icon-button [routerLink]="['/']">
@@ -6,12 +6,12 @@
       </button>
       <!--buttons disappear on Xs devices-->
       <div *ngIf="(!deviceXs && isLoggedIn)">
-        <!--  <button mat-button [routerLink]="['/profile']">
-          Perfil
+        <button mat-button [routerLink]="['/courses/all']">
+          Mis materias
         </button>
-        <button mat-button [routerLink]="['/admin-panel']">
-          Administrador
-        </button> -->
+        <button mat-button [routerLink]="['/information/menu']">
+          Mi desempeño
+        </button>
       </div>
       <!---->
     </div>
@@ -31,12 +31,12 @@
   </mat-toolbar-row>
   <!--mat-toolbar-row displayed on Xs devices-->
   <mat-toolbar-row *ngIf="deviceXs && isLoggedIn" fxLayoutAlign="space-between center">
-    <!-- <button mat-button [routerLink]="['/profile']">
-      Perfil
+    <button mat-button [routerLink]="['/courses/all']">
+      Mis materias
     </button>
-    <button *ngIf="isAdmin" mat-button [routerLink]="['/admin-panel']">
-      Administrador
-    </button> -->
+    <button mat-button [routerLink]="['/information/menu']">
+      Mi desempeño
+    </button>
   </mat-toolbar-row>
   <!---->
 </mat-toolbar>
