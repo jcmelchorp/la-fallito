@@ -16,15 +16,19 @@
       <!---->
     </div>
     <div fxLayout="row">
+      <button mat-icon-button *ngIf="isLoggedIn && isAdmin" class="mx-1" [matMenuTriggerFor]="newmenu"
+        aria-label="Agregar un curso o alumno">
+        <fa-icon [icon]="plus" size="lg" matTooltip="Crear curso"></fa-icon>
+      </button>
       <button *ngIf="!isLoggedIn" mat-icon-button [matMenuTriggerFor]="users"
-        aria-label="Example icon-button with a menu">
+        aria-label="Example icon-button with a menu" class="mx-1">
         <fa-icon [icon]="userIcon" size="lg"></fa-icon>
       </button>
       <button *ngIf="isLoggedIn" mat-icon-button [matMenuTriggerFor]="useractions"
-        aria-label="Example icon-button with a menu">
+        aria-label="Example icon-button with a menu" class="mx-1">
         <img class="img-fluid img-thumbnail rounded-circle" src="{{user.photoUrl}}">
       </button>
-      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="mx-1">
         <fa-icon [icon]="dots" size="lg"></fa-icon>
       </button>
     </div>
@@ -41,6 +45,16 @@
   <!---->
 </mat-toolbar>
 <!-- Menu Items -->
+<mat-menu #newmenu="matMenu" fxLayoutAlign="end">
+  <button mat-menu-item [routerLink]="['/under-construction']">
+    Nuevo curso
+  </button>
+  <button mat-menu-item [routerLink]="['/register']">
+    Añadir estudiante a curso
+  </button>
+</mat-menu>
+<!-- -->
+<!-- Menu Items -->
 <mat-menu #menu="matMenu" fxLayoutAlign="end">
   <button mat-menu-item [routerLink]="['/under-construction']">
     Ayuda
@@ -49,6 +63,8 @@
     Acerca de...
   </button>
 </mat-menu>
+<!-- -->
+<!-- Menu Items -->
 <mat-menu #users="matMenu" fxLayoutAlign="end">
   <button mat-menu-item [routerLink]="['login']">
     Entrar
@@ -57,6 +73,8 @@
     Registro
   </button>
 </mat-menu>
+<!-- -->
+<!-- Menu Items -->
 <mat-menu #useractions="matMenu" fxLayoutAlign="end">
   <button mat-menu-item [routerLink]="['profile']">
     Mi cuenta
@@ -68,3 +86,4 @@
     Cerrar sesión
   </button>
 </mat-menu>
+<!-- -->

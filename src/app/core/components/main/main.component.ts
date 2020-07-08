@@ -1,12 +1,16 @@
+import { Anounce } from '../../models/anounce.model';
 import { Component, OnInit } from '@angular/core';
-import { CardItemContent } from '../../models/cardItemContents';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
-  cardItems: CardItemContent[] = [
+  plus = faPlus;
+  question = faQuestionCircle;
+  cardItems: Anounce[] = [
     {
       title: 'Matemáticas - Tarea 2',
       subtitle: '15 de julio de 2020 a las 18:00hrs',

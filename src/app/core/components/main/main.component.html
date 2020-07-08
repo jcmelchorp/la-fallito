@@ -1,38 +1,22 @@
-<div class="py-3">
+<div class="py-5">
   <carousel [noPause]="false">
     <ng-container *ngFor="let item of cardItems">
       <slide>
-        <img src="{{item.imageUrl}}" alt="First slide" style="display: block; width: 100%;">
-        <div class="carousel-caption d-none d-md-block text-white-50">
-          <h3>{{ item.title }}</h3>
-          <p>{{ item.description }}</p>
+        <!--<img src="{{item.imageUrl}}" alt="First slide" style="display: block; width: 100%;">  -->
+        <div class="text-center py-5 bg-dark text-white">
+          <h1>{{ item.title }}</h1>
+          <div class="lead">
+            <h3 class="text-warning">{{item.subtitle}}</h3>
+            <p>{{ item.description }}</p>
+          </div>
         </div>
       </slide>
     </ng-container>
   </carousel>
 </div>
-<div class="px-5 py-3">
-  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px" fxLayoutAlign="flex-start">
-    <ng-container *ngFor="let item of cardItems">
-      <mat-card [class.mat-elevation-z6]="true" class="mb-2" fxFlex="0 1 calc(33.3% - 10px)"
-        fxFlex.lt-md="0 1 calc(50% - 10px)" fxFlex.lt-sm="100%" [ngStyle]="{'min-height':'200px'}">
-        <mat-card-header>
-          <mat-card-title>
-            {{ item.title }}
-          </mat-card-title>
-          <mat-card-subtitle>{{ item.subtitle }}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>{{ item.description }} </mat-card-content>
-        <mat-card-footer>
-          <a mat-button class="btn btn-block btn-warning" [routerLink]="['']" mat-button>Ir</a>
-        </mat-card-footer>
-      </mat-card>
-    </ng-container>
-  </div>
-</div>
-<div class="pb-5">
+<div class="px-5 py-5">
 
 </div>
-<div class="pb-5">
+<div class="px-0 py-5 bg-dark">
 
 </div>

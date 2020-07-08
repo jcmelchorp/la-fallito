@@ -1,4 +1,4 @@
-export interface CardItemContent {
+export interface Anounce {
   title: string;
   subtitle?: string;
   description: string;

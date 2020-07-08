@@ -5,22 +5,15 @@
     </div>
   </div>
 </div>
+<div class="px-5 text-center">
+  <button mat-raised-button class="btn btn-success" (click)="openAddCourseModal()">Nuevo Curso</button>
+</div>
 <div class="px-5 py-3">
-  <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px" fxLayoutAlign="flex-start">
-    <ng-container *ngFor="let course of courses">
-      <mat-card [class.mat-elevation-z6]="true" class="mb-2" fxFlex="0 1 calc(33.3% - 10px)"
-        fxFlex.lt-md="0 1 calc(50% - 10px)" fxFlex.lt-sm="100%">
-        <mat-card-header>
-          <a mat-icon-button [routerLink]="['']" mat-button>
-            <fa-icon [icon]="link"></fa-icon>
-          </a>
-          <mat-card-title>
-            {{ course.title }}
-          </mat-card-title>
-          <mat-card-subtitle>{{ course.teacherId }}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>{{ course.description }} </mat-card-content>
-      </mat-card>
-    </ng-container>
+  <app-courses-list [courses]="courses$ | async" (courseDeleted)="onCourseDelete($event)"
+    (courseEdited)="onCourseEdit($event)"></app-courses-list>
+  <div *ngIf="isLoading$ | async" class="d-flex justify-content-center align-items-center" style="margin-top: 200px">
+    <div class="spinner-grow text-primary" role="status" style="width: 4rem; height: 4rem;">
+      <span class="sr-only">Cargando...</span>
+    </div>
   </div>
 </div>
