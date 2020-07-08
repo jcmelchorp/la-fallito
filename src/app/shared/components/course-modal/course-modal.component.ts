@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Course } from '../../../courses/models/course.model';
-import { FormControl, FormGroup, ControlContainer, Form, NgForm } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Level } from 'src/app/courses/models/level.enum';
 
 @Component({
   selector: 'app-course-modal',
@@ -20,11 +19,11 @@ export class CourseModalComponent implements OnInit {
     { id: 5, name: 'No especificado' }
   ];
   courseData: Subject<Course> = new Subject();
-  course: Course = { title: '', description: '', levelId: 0 };
+
   constructor(
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<CourseModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Course) { }
+    @Inject(MAT_DIALOG_DATA) public course: Course) { }
 
 
 

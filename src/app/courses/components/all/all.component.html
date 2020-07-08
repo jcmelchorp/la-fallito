@@ -6,7 +6,8 @@
   </div>
 </div>
 <div class="px-5 text-center">
-  <button mat-raised-button class="btn btn-success" (click)="openAddCourseModal()">Nuevo Curso</button>
+  <button mat-raised-button class="btn btn-success mx-1" (click)="openAddCourseModal()">Nuevo Curso</button>
+  <button mat-raised-button class="btn btn-info mx-1" (click)="openAddCourseModal()">Nueva Tarea</button>
 </div>
 <div class="px-5 py-3">
   <app-courses-list [courses]="courses$ | async" (courseDeleted)="onCourseDelete($event)"

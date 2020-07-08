@@ -1,20 +1,21 @@
-<!--  <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true"><i class="fa fa-times-circle"></i></span>
-    </button> -->
-<div mat-dialog-title>Crea una nueva clase</div>
+<div mat-dialog-title>Comienza un nuevo curso</div>
 <div mat-dialog-content>
   <form #courseForm="ngForm" novalidate (onSubmit)="onSave()">
-    <mat-form-field appearance="outline">
+    <mat-form-field class="d-block" appearance="outline">
       <mat-label>Título</mat-label>
-      <input matInput id="title" type="text" [(ngModel)]="course.title" name="title" #title="ngModel">
+      <input matInput id="title" type="text" [(ngModel)]="course.title" name="title" #title="ngModel" required>
     </mat-form-field>
-    <mat-form-field appearance="outline">
+    <mat-form-field class="d-block" appearance="outline">
+      <mat-label>Área</mat-label>
+      <input matInput id="area" type="text" [(ngModel)]="course.area" name="area" #area="ngModel">
+    </mat-form-field>
+    <mat-form-field class="d-block" appearance="outline">
       <mat-label>Descripción</mat-label>
       <textarea matInput id="description" [(ngModel)]="course.description" name="description" type="text"
-        #description="ngModel">
+        #description="ngModel" required>
       </textarea>
     </mat-form-field>
-    <mat-form-field appearance="outline">
+    <mat-form-field class="d-block" appearance="outline">
       <mat-label>Nivel</mat-label>
       <mat-select #levelId="ngModel" id="levelId" [(ngModel)]="course.levelId" name="level">
         <mat-option *ngFor="let level of levels" [value]="level.id">{{level.name}}</mat-option>

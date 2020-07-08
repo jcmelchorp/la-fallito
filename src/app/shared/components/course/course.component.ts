@@ -12,12 +12,10 @@ export class CourseComponent implements OnInit {
   @Input() editable = true;
   @Output() deleted = new EventEmitter<Course>();
   @Output() edited = new EventEmitter<Course>();
-
-  constructor() {
-
-  }
+  constructor() { }
 
   ngOnInit() {
+
   }
 
   onDelete() {

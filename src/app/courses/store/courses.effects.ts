@@ -34,7 +34,8 @@ export class CoursesEffects {
                 key: key || null,
                 title: course.title || null,
                 description: course.description || null,
-                levelId: course.levelId || null
+                levelId: course.levelId || null,
+                area: course.area || null
               };
             });
             return (new fromCourses.CoursesLoaded({ courses: coursesData }));

@@ -1,3 +1,4 @@
+import { ProfileUserComponent } from './../../profile/components/profile-user/profile-user.component';
 import { UpdateProfile } from './../store/auth.actions';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -10,28 +11,23 @@ import { User } from '../models/user.model';
   providedIn: 'root'
 })
 export class AuthService {
+  private user: Observable<firebase.User | null>;
+  constructor(
+    private afAuth: AngularFireAuth,
+    private db: AngularFireDatabase
+  ) { }
 
-  constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase) { }
 
   register(email: string, password: string) {
     return from(this.afAuth.createUserWithEmailAndPassword(email, password));
   }
 
-  async updateProfile(displayName: string, photoUrl: string) {
+  /* updateProfile(displayName: string, photoUrl: string) {
     const userProfile = this.afAuth.currentUser;
     if (userProfile) {
-      return from((await userProfile).updateProfile(
-        {
-          displayName: displayName,
-          photoURL: photoUrl
-        }
-      ).then(
-        () => {
-          console.log('update successfull');
-        }
-      ).catch()) as any;
+      return from(userProfile.ProfileUserComponent({dis})) as any );
     }
-  }
+  } */
 
   login(email: string, password: string) {
     return from(this.afAuth.signInWithEmailAndPassword(email, password));

@@ -1,5 +1,7 @@
 import { Component, OnInit, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { User } from 'src/app/auth/models/user.model';
+import { faArrowLeft, faCircle } from '@fortawesome/free-solid-svg-icons';
+import { Course } from 'src/app/courses/models/course.model';
 
 @Component({
   selector: 'app-userdetail',
@@ -9,17 +11,16 @@ import { User } from 'src/app/auth/models/user.model';
 })
 export class UserdetailComponent implements OnInit {
   @Input() user: User;
-  /*   @Input() projects: Project[];
-    @Input() customers: Customer[]; */
-  @Input() userProjectsLoading: boolean;
-  @Input() userCustomersLoading: boolean;
+  @Input() courses: Course[];
+  @Input() userCoursesLoading: boolean;
   @Output() detailsClosed = new EventEmitter<any>();
-  @Output() projectsLoad = new EventEmitter<any>();
-  @Output() customersLoad = new EventEmitter<any>();
-  /*   @Output() projectDeleted = new EventEmitter<Project>();
-    @Output() customerDeleted = new EventEmitter<Customer>(); */
+  @Output() coursesLoad = new EventEmitter<any>();
+  @Output() courseDeleted = new EventEmitter<Course>();
   @Output() addAdmin = new EventEmitter<any>();
   @Output() removeAdmin = new EventEmitter<any>();
+  left = faArrowLeft;
+  circ = faCircle;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -28,22 +29,14 @@ export class UserdetailComponent implements OnInit {
     this.detailsClosed.emit();
   }
 
-  loadProjects() {
-    this.projectsLoad.emit();
+  loadCourses() {
+    this.coursesLoad.emit();
   }
 
-  loadCustomers() {
-    this.customersLoad.emit();
+  onCourseDelete(course: Course) {
+    this.courseDeleted.emit(course);
   }
 
-  /*  onProjectDelete(project: Project) {
-     this.projectDeleted.emit(project);
-   }
-
-   onCustomerDelete(customer: Customer) {
-     this.customerDeleted.emit(customer);
-   }
-  */
   onAddAdmin() {
     this.addAdmin.emit(this.user);
   }

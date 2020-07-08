@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, Input, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { faCircle } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-user',
@@ -11,6 +13,7 @@ export class UserComponent implements OnInit {
   @Output() userSelected = new EventEmitter<any>();
   @Output() addAdmin = new EventEmitter<any>();
   @Output() removeAdmin = new EventEmitter<any>();
+  circ = faCircle;
   constructor() { }
 
   ngOnInit(): void {

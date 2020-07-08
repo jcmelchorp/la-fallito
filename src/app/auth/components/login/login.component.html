@@ -4,6 +4,7 @@
       <mat-card [class.mat-elevation-z6]="true">
         <mat-card-header class="py-4">
           <mat-card-title>Inicio de sesión</mat-card-title>
+          <img mat-card-avatar src="assets/logos/rds-nobackground.png">
         </mat-card-header>
         <mat-card-content>
           <div *ngIf="error$ | async as error" class="alert alert-danger" role="alert">
@@ -30,7 +31,7 @@
             </mat-form-field>
 
             <!-- Sign in button -->
-            <button mat-raised-button class="btn btn-block btn-info" type="submit" (click)="onLogin()">Entrar</button>
+            <button mat-raised-button class="btn btn-block btn-success" type="submit">Entrar</button>
             <!-- Social login -->
             <div class="btn-group btn-block py-3">
               <button mat-button type="button" class="btn btn-primary" (click)="onSocialLogin('facebook')">
@@ -46,7 +47,7 @@
           </form>
           <!-- Register -->
           <p class="pt-2">¿No está inscrito?
-            <a mat-button color="primary" [routerLink]="['/register']">Regístrate aquí</a>
+            <a mat-button color="warn" [routerLink]="['/register']">Regístrate aquí</a>
           </p>
         </mat-card-content>
       </mat-card>

@@ -4,6 +4,7 @@
       <mat-card [class.mat-elevation-z6]="true">
         <mat-card-header class="py-4">
           <mat-card-title>Registro</mat-card-title>
+          <img mat-card-avatar src="assets/logos/rds-nobackground.png">
         </mat-card-header>
         <mat-card-content>
           <div *ngIf="error$ | async as error" class="alert alert-danger" role="alert">
@@ -13,10 +14,15 @@
           <form [formGroup]="registerForm" novalidate (ngSubmit)="onRegister()">
             <!-- Username -->
             <mat-form-field class="d-block" appearance="outline">
-              <mat-label>Nombre de usuario</mat-label>
+              <mat-label>Nombre completo</mat-label>
               <input matInput type="text" #username formControlName="username">
               <mat-icon matSuffix>username</mat-icon>
             </mat-form-field>
+            <!-- Role -->
+            <!--   <mat-form-field class="d-block" appearance="outline">
+              <mat-label>Soy</mat-label>
+              <mat-checkbox matInput #isTeacher formControlName="isTeacher" type="checkbox">Maestro</mat-checkbox>
+            </mat-form-field> -->
             <!-- Email -->
             <mat-form-field class="d-block" appearance="outline">
               <mat-label>Correo electrónico</mat-label>
@@ -39,7 +45,7 @@
           </form>
           <!-- Register -->
           <p class="pt-5">¿Ya esta inscrito?
-            <a mat-button color="primary" [routerLink]="['/login']">Inicia sesión</a>
+            <a mat-button color="warn" [routerLink]="['/login']">Inicia sesión</a>
           </p>
 
 

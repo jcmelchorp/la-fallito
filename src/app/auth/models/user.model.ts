@@ -5,6 +5,9 @@ export interface User {
   providerId: string;
   photoUrl: string;
   isNewUser?: boolean;
+  isTeacher?: boolean;
+  isStudent?: boolean;
+  isParent?: boolean;
   isAdmin?: boolean;
   isOnline?: boolean;
 }

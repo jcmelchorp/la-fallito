@@ -25,10 +25,10 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<AppState>,
     public mediaObserver: MediaObserver
-    ){
+  ) {
 
   }
-  ngOnInit(){
+  ngOnInit() {
     this.user$ = this.store.select(getUser);
     this.isLoggedIn$ = this.store.select(getIsLoggedIn);
     this.isLoading$ = this.store.select(getIsLoading);
@@ -45,7 +45,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.mediaSub.unsubscribe();
   }
   onLogout(user: User) {
-    this.store.dispatch(new fromAuth.LogoutRequested( { user }));
+    this.store.dispatch(new fromAuth.LogoutRequested({ user }));
   }
 
 }

@@ -1,13 +1,10 @@
 <mat-card>
   <mat-card-content>
-    <h3 class="h2-responsive mb-4">
-      <strong>Edit profile</strong>
-    </h3>
-
+    <h2 class="mat-h2 mb-4">Editar perfil</h2>
     <!--Body-->
     <form [formGroup]="updateProfileForm">
       <mat-form-field>
-        <mat-label for="form1">Display name</mat-label>
+        <mat-label for="form1">Nombre completo</mat-label>
         <input matInput type="text" #form1 formControlName="displayName" />
 
       </mat-form-field>
@@ -18,7 +15,7 @@
       </mat-form-field>
 
       <div class="text-right">
-        <button mat-raised-button type="button" color="accent" (click)="onProfileUpdate()">Update profile</button>
+        <button mat-raised-button type="button" color="warn" (click)="onProfileUpdate()">Update profile</button>
       </div>
     </form>
   </mat-card-content>

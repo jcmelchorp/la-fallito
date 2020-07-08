@@ -1,7 +1,19 @@
+import { getUser } from 'src/app/auth/store/auth.selectors';
+import { getAuthState } from './../../../auth/store/auth.selectors';
 import { Anounce } from '../../models/anounce.model';
 import { Component, OnInit } from '@angular/core';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
+import { Observable } from 'rxjs';
+import { Course } from 'src/app/courses/models/course.model';
+import { Store, select } from '@ngrx/store';
+import { AppState } from 'src/app/reducers';
+import { map } from 'rxjs/operators';
+import { getAllLoaded, getCourses } from 'src/app/courses/store/courses.selectors';
+import { AngularFireAuth } from '@angular/fire/auth';
+import * as fromCourses from '../../../courses/store/courses.actions';
+import { User } from 'src/app/auth/models/user.model';
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -43,9 +55,30 @@ export class MainComponent implements OnInit {
       imageUrl: 'assets/carousel/main-banner-04.jpg',
     }
   ];
-  constructor() { }
+  courses$: Observable<Course[] | null>;
+  user$: Observable<User | null>;
+  isLoading$: Observable<boolean>;
+  constructor(
+    private afAuth: AngularFireAuth,
+    private store: Store<AppState>
+  ) { }
 
-  ngOnInit(): void {
+  get user() {
+    return this.afAuth.currentUser;
+  }
+
+  ngOnInit() {
+    this.isLoading$ = this.store.select(getAllLoaded);
+    this.courses$ = this.store.pipe(
+      select(getCourses),
+      map((courses: Course[]) => {
+        if (this.user && !courses) {
+          this.store.dispatch(new fromCourses.CoursesQuery());
+        }
+        return courses;
+      })
+    );
+
   }
 
 }

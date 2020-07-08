@@ -16,7 +16,6 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   hide = true;
   error$: Observable<string | null>;
-
   constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
@@ -50,6 +49,7 @@ export class RegisterComponent implements OnInit {
     const username = this.registerForm.value.username;
     const email = this.registerForm.value.email;
     const password = this.registerForm.value.password;
+
     if (this.registerForm.valid) {
       this.store.dispatch(new actions.RegisterRequested({ username, email, password }));
     }

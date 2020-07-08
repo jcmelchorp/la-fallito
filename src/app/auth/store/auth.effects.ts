@@ -34,7 +34,10 @@ export class AuthEffects {
             photoUrl: res.user.photoURL || gravatarUrl,
             isNewUser: res.additionalUserInfo.isNewUser,
             isAdmin: false,
-            isOnline: true
+            isOnline: true,
+            isStudent: false,
+            isTeacher: false,
+            isParent: false
           };
           return user;
         }),
@@ -80,26 +83,26 @@ export class AuthEffects {
     )
   );
 
-  /* @Effect()
-  updateProfile$ = this.actions$.pipe(
-    ofType(auth.AuthActionTypes.UPDATE_PROFILE),
-    map((action: auth.UpdateProfile) => action.payload),
-    switchMap((payload: any) =>
-      this.authService.updateProfile(payload.displayName, payload.photoUrl)).pipe(
-        map(() => {
-          const currentUser: any = this.authService.getCurrentUser();
-          const updatedUser: any = {
-            uid: currentUser.uid || null,
-            displayName: currentUser.displayName || null,
-            email: currentUser.email || null,
-            providerId: currentUser.providerData[0].providerId || null,
-            photoUrl: currentUser.photoURL || null
-          };
-          return new auth.UpdateProfileSuccess({ user: updatedUser });
-        }),
-        catchError((error) => of(new auth.AuthError(error)))
-      )
-  ); */
+  /*  @Effect()
+   updateProfile$ = this.actions$.pipe(
+     ofType(auth.AuthActionTypes.UPDATE_PROFILE),
+     map((action: auth.UpdateProfile) => action.payload),
+     switchMap((payload: any) =>
+       this.authService.updateProfile(payload.displayName, payload.photoUrl).pipe(
+         map(() => {
+           const currentUser: any = this.authService.getCurrentUser();
+           const updatedUser: any = {
+             uid: currentUser.uid || null,
+             displayName: currentUser.displayName || null,
+             email: currentUser.email || null,
+             providerId: currentUser.providerData[0].providerId || null,
+             photoUrl: currentUser.photoURL || null
+           };
+           return new auth.UpdateProfileSuccess({ user: updatedUser });
+         }),
+         catchError((error) => of(new auth.AuthError(error)))
+       )
+     )); */
 
 
   @Effect()
@@ -119,17 +122,17 @@ export class AuthEffects {
           };
           return new auth.LoginSuccess({ user });
         }),
-        switchMap((user: any) => {
-          if (user.isNewUser) {
-            return [
-              new auth.LoginSuccess({ user }),
-              new auth.SaveUser({ user }),
-              new auth.CheckUserRole({ uid: user.uid })
-            ];
-          } else {
-            return [new auth.LoginSuccess({ user }), new auth.CheckUserRole({ uid: user.uid })];
-          }
-        }),
+        /*        switchMap((user: any) => {
+                  if (user.isNewUser) {
+                    return [
+                      new auth.LoginSuccess({ user }),
+                      new auth.SaveUser({ user }),
+                      new auth.CheckUserRole({ uid: user.uid })
+                    ];
+                  } else {
+                    return [new auth.LoginSuccess({ user }), new auth.CheckUserRole({ uid: user.uid })];
+                  }
+                }),*/
         tap(() => this.router.navigateByUrl('')),
         catchError(error => of(new auth.AuthError({ error })))
       )

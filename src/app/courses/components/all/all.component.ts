@@ -10,6 +10,7 @@ import { map, take } from 'rxjs/operators';
 import { getCourses, getAllLoaded } from '../../store/courses.selectors';
 import * as fromCourses from '../../store/courses.actions';
 import { CourseModalComponent } from 'src/app/shared/components/course-modal/course-modal.component';
+import { ConfirmModalComponent } from 'src/app/shared/components/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-all',
@@ -25,6 +26,7 @@ export class AllComponent implements OnInit {
   };
   newCourse: Course;
   dialogRef: MatDialogRef<CourseModalComponent>;
+  confirmRef: MatDialogRef<ConfirmModalComponent>;
   constructor(
     private store: Store<AppState>,
     private afAuth: AngularFireAuth,
@@ -42,7 +44,6 @@ export class AllComponent implements OnInit {
         return courses;
       })
     );
-    console.log('this point')
   }
   get user() {
     return this.afAuth.currentUser;
@@ -50,22 +51,18 @@ export class AllComponent implements OnInit {
 
   openAddCourseModal() {
     this.dialogRef = this.dialog.open(CourseModalComponent, {
-      width: '250px',
+      width: '350px',
       data: {}
     });
 
     this.dialogRef.componentInstance.courseData.subscribe((courseData: Course) => {
-      console.log('The dialog was closed');
-      console.log(courseData);
       this.store.dispatch(new fromCourses.CourseAdded({ course: courseData }));
-      console.log('course passed');
-      console.log(courseData);
     });
   }
 
   openEditCourseModal(course: Course) {
     this.dialogRef = this.dialog.open(CourseModalComponent, {
-      width: '250px',
+      width: '350px',
       data: {
         key: course.key,
         title: course.title,
@@ -74,33 +71,20 @@ export class AllComponent implements OnInit {
         levelId: course.levelId
       }
     });
-
-    this.dialogRef.afterClosed().subscribe((courseData: Course) => {
-      console.log('The dialog was closed');
-      console.log(courseData);
-      this.newCourse = courseData;
-      console.log(this.newCourse);
-
+    this.dialogRef.componentInstance.courseData.subscribe((courseData: Course) => {
+      this.store.dispatch(new fromCourses.CourseEdited({ course: courseData }));
     });
   }
 
-  openConfirmModal(project: Course) {
-    /* this.dialogRef = this.dialog.open(ConfirmModalComponent, {
-      width: '250px',
-      data: {
-        key: course.key,
-        title: course.title,
-        description: course.description,
-        area: course.area,
-        level: course.level
-      }
-    }); */
-    /*
-    this.modalRef.content.confirmation.pipe(take(1)).subscribe((confirmation: boolean) => {
+  openConfirmModal(course: Course) {
+    this.confirmRef = this.dialog.open(ConfirmModalComponent, {
+      width: '350px'
+    });
+    this.confirmRef.componentInstance.confirmation.pipe(take(1)).subscribe((confirmation: boolean) => {
       if (confirmation) {
-        this.store.dispatch(new fromCourses.CourseDeleted({ project }));
+        this.store.dispatch(new fromCourses.CourseDeleted({ course }));
       }
-    }); */
+    })
   }
 
   onCourseDelete(course: Course) {
